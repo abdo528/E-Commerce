@@ -1,0 +1,18 @@
+{
+    "navbar": {
+        "home": "الصفحة الرئيسية",
+        "products": "المنتجات",
+        "categories": "الفئات",
+        "brands": "العلامات التجارية",
+        "login": "تسجيل الدخول",
+        "register": "التسجيل",
+        "language": "اللغة"
+    },
+    "footer": {
+        "Get The FreshCart App": "احصل على تطبيق",
+        "We Will Send You a Link, Open it on Your Phone to download the app": "سنرسل لك رابطًا، افتحه على هاتفك لتحميل التطبيق",
+        "Payment partners": "شركاء الدفع",
+        "Get Deliveries with FreshCart": "احصل على توصيلات",
+        "Share App Link": "شارك رابط التطبيق"
+    }
+}

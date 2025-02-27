@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@import 'ngx-toastr/toastr';
+
+body {
+    font-family: "Montserrat", serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.btn-main {
+    @apply bg-green-600 text-white py-3 px-6 rounded hover:bg-green-900 duration-500;
+}
+
+::selection {
+    background-color: green;
+    color: white;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: green;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: gray;
+}

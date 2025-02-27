@@ -1,0 +1,78 @@
+<section>
+    <div class="grid md:grid-cols-[70%_minmax(0,1fr)]">
+        <div class="overflow-hidden">
+            <owl-carousel-o [options]="customMainSlider">
+                <ng-template carouselSlide>
+                    <img src="/images/img1.avif" class="h-72 sm:w-full" alt="img1">
+                </ng-template>
+                <ng-template carouselSlide>
+                    <img src="/images/img2.avif" class="h-72 sm:w-full md:w-full" alt="img2">
+                </ng-template>
+                <ng-template carouselSlide>
+                    <img src="/images/img3.avif" class="h-72 sm:w-full md:w-full" alt="img3">
+                </ng-template>
+                <ng-template carouselSlide>
+                    <img src="/images/img4.avif" class="h-72 sm:w-full md:w-full" alt="img4">
+                </ng-template>
+                <ng-template carouselSlide>
+                    <img src="/images/img5.avif" class="h-72 sm:w-full md:w-full" alt="img5">
+                </ng-template>
+                <ng-template carouselSlide>
+                    <img src="/images/img6.avif" class="h-72 sm:w-full md:w-full" alt="img8">
+                </ng-template>
+                <ng-template carouselSlide>
+                    <img src="/images/img7.avif" class="h-72 sm:w-full md:w-full" alt="img7">
+                </ng-template>
+            </owl-carousel-o>
+        </div>
+        <div class="md:block sm:flex overflow-hidden">
+            <img src="/images/grocery-banner.png" class="h-36 lg:w-full" alt="grocery-banner">
+            <img src="/images/grocery-banner-2.jpeg" class="h-36 lg:w-full" alt="grocery-banner-2">
+        </div>
+    </div>
+    <h2 class="text-4xl">Popular Categories</h2>
+    <owl-carousel-o [options]="customSlider">
+        @for ( categories of showCategories; track categories._id) {
+        <ng-template carouselSlide>
+            <div>
+                <img [src]="categories.image" class="h-52" [alt]="categories.name">
+                <h3 class="text-green-500">{{categories.name}}</h3>
+            </div>
+        </ng-template>
+        }
+    </owl-carousel-o>
+</section>
+<section>
+    <input type="search" placeholder="Search Product by title......" [(ngModel)]="searchValue"
+        class="bg-gray-50 border border-gray-300 my-5 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+    <h2 class="text-4xl">Popular Products</h2>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+        @for (product of showProducts | search : searchValue; track product.id) {
+        <div
+            class="border relative border-green-400/50 rounded-md overflow-hidden shadow group hover:shadow-green-600 duration-500">
+            <div>
+                <img [src]="product.imageCover" class="w-full" [alt]="product.title" />
+            </div>
+            <div class="px-2 py-4">
+                <h4 class="text-green-500 text-xs">{{product.category.name}}</h4>
+                <div class="flex justify-between items-center">
+                    <h3 class="font-medium">{{product.title.split(' ',3).join(' ')}}</h3>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span>{{ product.price | currency : 'GBP'}}</span>
+                    <div class="flex items-center">
+                        <i class="fas fa-star text-yellow-300"></i>
+                        <span class="text-gray-500">{{product.ratingsAverage}}</span>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="group-hover:bg-green-500/35 absolute start-0 top-0 bottom-0 right-0 flex justify-evenly items-center opacity-0 group-hover:opacity-100 duration-500">
+                <i (click)="addWishList(product.id,$event)" class="fas fa-heart cursor-pointer text-2xl"></i>
+                <i [routerLink]="['/details',product.id]" class="fas fa-eye cursor-pointer text-2xl"></i>
+                <i (click)="addToCart(product.id,$event)" class="fas fa-cart-shopping cursor-pointer text-2xl"></i>
+            </div>
+        </div>
+        }
+    </div>
+</section>

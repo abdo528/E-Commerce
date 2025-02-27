@@ -1,0 +1,23 @@
+<section class="min-h-screen">
+    <h2 class="text-4xl mb-3">Wish List:</h2>
+    @for (wish of showWish; track wish._id) {
+    <div class="grid grid-cols-[30%_minmax(0,1fr)] gap-x-5 items-center border-b mb-2">
+        <div><img [src]="wish.imageCover" [alt]="wish.title"></div>
+        <div class="flex justify-between items-center">
+            <div>
+                <p>Quantity: <span class="text-green-500">{{wish.quantity}}</span></p>
+                <p><span class="text-green-500">{{wish.description}}</span></p>
+                <div>
+                    <h3 class="font-medium">{{wish.title}}</h3>
+                    <p class="my-3">Price: <span class="text-green-500">{{wish.price | currency }}</span></p>
+                    <div class="items-center flex justify-between">
+                        <i (click)="removeWishList(wish._id)"
+                            class="fas fa-trash-alt mx-1 cursor-pointer my-4 text-red-500"></i>
+                        <i (click)="addToCart(wish.id,$event)" class="fas fa-cart-shopping cursor-pointer text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</section>

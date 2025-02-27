@@ -1,0 +1,11 @@
+<div class="bg-gray-100 dark:bg-gray-900 dark:text-white">
+    <app-navbar [isLogin]="false"></app-navbar>
+    <div class="container py-10">
+        <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
+</div>
+@if (showBtn) {
+<button (click)="scrollTop()" class="fixed right-5 bottom-5 text-white bg-green-600 rounded p-2 hover:bg-green-800"><i
+        class="fas fa-angle-up"></i></button>
+}

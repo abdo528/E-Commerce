@@ -1,0 +1,37 @@
+<section class="min-h-screen">
+    <h2 class="text-4xl mb-3">Shop Cart:</h2>
+    <div class="flex justify-between items-center">
+        <p>Total Cart Price: <span class="text-green-500">{{cartDetails.totalCartPrice|currency:'GBP'}}</span></p>
+        <button [class.hidden]="cartDetails.totalCartPrice===0" type="button" class="text-red-500 flex items-center"
+            (click)="clearItems()"><svg class="me-1.5 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M6 18 17.94 6M18 18 6.06 6" />
+            </svg>Clear Cart</button>
+    </div>
+    @for (cart of cartDetails.products; track cart.product._id) {
+    <div class="grid grid-cols-[30%_minmax(0,1fr)] gap-x-5 items-center border-b mb-2">
+        <div><img [src]="cart.product.imageCover" [alt]="cart.product.title"></div>
+        <div class="flex justify-between items-center">
+            <div>
+                <h3 class="font-medium">{{cart.product.title}}</h3>
+                <p class="my-3">Price: <span class="text-green-500">{{cart.price | currency }}</span></p>
+                <i (click)="removeItem(cart.product._id)"
+                    class="fas fa-trash-alt mx-1 cursor-pointer my-4 text-red-500"></i>
+            </div>
+            <div>
+                <i role="button" (click)="quantity(cart.product._id,cart.count+1)"
+                    [class.hidden]="cart.product.quantity===cart.count"
+                    class="fas fa-plus border rounded p-2 border-green-500"></i>
+                <span class="mx-2">{{cart.count}}</span>
+                <i role="button" (click)="quantity(cart.product._id,cart.count-1)" [class.hidden]="cart.count===1"
+                    class="fas fa-minus border rounded p-2 border-green-500"></i>
+            </div>
+        </div>
+    </div>
+    }@empty {
+    <p class="text-center text-green-600 text-3xl">No Data Found</p>
+    }
+    <button [class.hidden]="cartDetails.totalCartPrice===0" type="button" class="btn-main"
+        [routerLink]="['/checkout',cartDetails._id]">Check Out</button>
+</section>
